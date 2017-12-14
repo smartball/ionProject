@@ -1,0 +1,37 @@
+<ion-header hidden>
+  <ion-navbar color="secondary">
+  	
+    <ion-title>
+      Map
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)='toggleSearch()'>
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)='choosePosition()'>
+        <ion-icon name="ios-locate-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+	<div class="switch">
+	  <button ion-button icon-only color="light" (click)='toggleSearch()'><ion-icon name="search"></ion-icon></button>
+	  <button ion-button color="light" (click)="(switch = 'map'); resizeMap()" [class.active]="(switch == 'map')" icon-only><ion-icon name="map"></ion-icon></button>
+	  <button ion-button color="light" icon-only menuToggle><ion-icon name="list"></ion-icon></button>
+	</div>
+
+	<div class="currentitem" *ngIf="currentregional">
+	  <button ion-item no-lines (click)="viewPlace(currentregional.title)">
+	    <h2>{{ currentregional.title }}</h2>
+	    <ion-note item-right icon-only><ion-icon name="ios-arrow-forward"></ion-icon></ion-note>
+	  </button>
+	</div>
+<ion-content>
+    <ion-row #searchbar id="floating-panel" [hidden]="!search">
+      <ion-searchbar placeholder="Search" (click)="openModal()" class="searchbar searchbar-ios searchbar-left-aligned"><div class="searchbar-input-container"><button class="searchbar-md-cancel disable-hover button button-md button-clear button-clear-md button-clear-md-dark" clear="" color="dark" ion-button="" mode="md" type="button"><span class="button-inner"><ion-icon name="md-arrow-back" role="img" class="icon icon-ios ion-md-arrow-back" aria-label="arrow back"></ion-icon></span><div class="button-effect"></div></button><div class="searchbar-search-icon"></div><input class="searchbar-input" dir="auto" placeholder="Search" type="search" autocomplete="off" autocorrect="off" spellcheck="false"><button class="searchbar-clear-icon disable-hover button button-ios button-clear button-clear-ios" clear="" ion-button="" type="button"><span class="button-inner"></span><div class="button-effect"></div></button></div><button class="searchbar-ios-cancel disable-hover button button-ios button-clear button-clear-ios" clear="" ion-button="" mode="ios" type="button" tabindex="-1"><span class="button-inner">Cancel</span><div class="button-effect"></div></button></ion-searchbar>
+      
+    </ion-row>
+    
+  <div #mapContainer id="map"></div>
+  
+</ion-content>
